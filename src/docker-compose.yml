@@ -1,0 +1,35 @@
+version: '3.8'
+
+volumes:
+  mongo_volume:
+
+networks:
+  rotten-network:
+    driver: bridge
+
+services: 
+  mongo:
+    image: mongo:4.4.3
+    ports:
+      - ${MONGODB_PORT}:${MONGODB_PORT}
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGODB_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGODB_PASSWORD}
+    volumes:
+      - mongo_volume:/data/db
+    networks:
+      - rotten-network
+  rotten:
+    image: jhtoigo/rotten-potatoes:${TAG}
+    build:
+      dockerfile: Dockerfile
+      context: ./
+    ports:
+      - 8083:${PORT}
+    networks:
+      - rotten-network
+    environment:
+      MONGODB_URI: mongodb://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@${MONGODB_DB}:${MONGODB_HOST}/${MONGODB_DB}
+    depends_on:
+      - mongo
+
