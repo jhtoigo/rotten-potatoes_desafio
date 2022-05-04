@@ -10,6 +10,9 @@ from prometheus_flask_exporter import PrometheusMetrics
 from middleware import set_unhealth, set_unready_for_seconds, middleware
 from datetime import datetime
 
+from dotenv import load_dotenv
+load_dotenv()
+
 app = Flask(__name__,
             static_url_path='', 
             static_folder='static',

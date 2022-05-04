@@ -6,6 +6,9 @@ import random
 from pymongo import MongoClient
 import os
 
+from dotenv import load_dotenv
+load_dotenv()
+
 MONGODB_DB = os.getenv("MONGODB_DB", "admin")
 MONGODB_HOST = os.getenv("MONGODB_HOST", "localhost")
 MONGODB_PORT = int(os.getenv("MONGODB_PORT", "27017"))
