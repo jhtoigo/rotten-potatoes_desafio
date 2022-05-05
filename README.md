@@ -3,11 +3,10 @@
 ## Instruções para rodar o projeto
 
 1. Criar arquivo .env baseado no arquivo .env_example.
-  - Observação: foi adicionado no projeto o pacote dotenv para o python utilizar também o arquivo .env
   
-2. Acessar a pasta src e rodar o docker-compose para subir o mongo e o python
+  
+2. Rodar o docker-compose para subir os containers
     ```
-    cd src/
     docker-compose up -d
     ```
 3. Para acessar a aplicação através do navegador utilize a porta definida no .env em WEBPORT:
